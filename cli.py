@@ -1,4 +1,5 @@
 import json
+import subprocess
 from pathlib import Path
 
 import typer
@@ -74,6 +75,12 @@ def create():
         )
     else:
         typer.echo("❌ This one isn’t implemented yet")
+
+    git_init = Prompt.ask(
+        "Initialize git?", choices=["yes", "no"], default="yes"
+    )
+    if git_init.lower() == "yes":
+        subprocess.run(["git", "init"], cwd=project_name)
 
 
 if __name__ == "__main__":
