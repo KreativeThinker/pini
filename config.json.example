@@ -1,0 +1,8 @@
+{
+  "author": "Jane Dev",
+  "email": "jane@example.com",
+  "package_managers": {
+    "python": "pip",
+    "js": "pnpm"
+  }
+}
