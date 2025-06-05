@@ -109,13 +109,6 @@ touch app/schemas/__init__.py
 # TODO: Fix tool configurations
 cat >> pyproject.toml << EOF
 
-[project]
-name = "${PROJECT_NAME}"
-description = "${PROJECT_DESCRIPTION}"
-authors = [{name = "Your Name", email = "your.email@example.com"}]
-license = {text = "MIT"}
-requires-python = ">=3.8"
-
 [project.scripts]
 dev = "uvicorn main:app --reload --host 0.0.0.0 --port 8000"
 start = "uvicorn main:app --host 0.0.0.0 --port 8000"
@@ -132,6 +125,9 @@ line_length = 100
 python_version = "3.8"
 warn_return_any = true
 warn_unused_configs = true
+
+[tool.uv]
+package = true
 EOF
 
 # Create .env file
