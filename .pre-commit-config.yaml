@@ -33,7 +33,6 @@ repos:
     rev: v8.22.1
     hooks:
       - id: gitleaks
-        name: "🔒 security · Detect hardcoded secrets"
 
   - repo: https://github.com/astral-sh/uv-pre-commit
     rev: 0.7.10
