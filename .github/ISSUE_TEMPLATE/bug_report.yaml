@@ -1,0 +1,32 @@
+name: 🐛 Bug Report
+description: Report something broken
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Describe the bug clearly.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Step-by-step so we can see the issue too.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: What should have happened instead?
+    validations:
+      required: false
+
+  - type: input
+    attributes:
+      label: OS & Python version
+      description: e.g., macOS 14, Python 3.11
+    validations:
+      required: false

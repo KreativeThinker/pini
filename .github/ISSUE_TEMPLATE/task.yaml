@@ -1,0 +1,18 @@
+name: ✅ Task
+description: Track a to-do or technical task
+title: "[Task] "
+labels: [task]
+body:
+  - type: textarea
+    attributes:
+      label: Task description
+      description: What needs to be done?
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Estimated effort
+      description: Optional (e.g., 1h, 2d, etc.)
+    validations:
+      required: false
