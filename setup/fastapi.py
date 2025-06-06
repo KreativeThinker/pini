@@ -42,7 +42,15 @@ def insert_author_details(pyproject_path: Path, author: str, email: str):
         toml.dump(data, f)
 
 
-def install_fastapi(project_name: str, author: str, email: str):
+def install_fastapi(
+    project_name: str,
+    author: str,
+    email: str,
+    init_git: bool,
+    init_commitizen: bool,
+    init_linters: bool,
+    init_pre_commit_hooks: bool,
+):
     typer.echo(f"🚀 Bootstrapping FastAPI project: {project_name}")
 
     subprocess.run(["uv", "init", project_name], check=True)
@@ -51,38 +59,45 @@ def install_fastapi(project_name: str, author: str, email: str):
     project_path = Path(project_name)
 
     subprocess.run(
-        [
-            "uv",
-            "add",
-            "--dev",
-            "pre-commit",
-            "black",
-            "isort",
-            "flake8",
-            "commitizen",
-        ],
-        cwd=project_path,
-        check=True,
-    )
-
-    subprocess.run(
         ["uv", "add", "fastapi", "uvicorn[standard]", "pydantic"],
         cwd=project_path,
         check=True,
     )
 
-    append_linter_config(project_path / "pyproject.toml")
+    if init_linters or init_pre_commit_hooks:
+        dev_deps = ["pre-commit"]
+        if init_linters:
+            dev_deps.extend(["black", "isort", "flake8"])
+        if init_commitizen:
+            dev_deps.append("commitizen")
+
+        if dev_deps:
+            subprocess.run(
+                ["uv", "add", "--dev"] + dev_deps,
+                cwd=project_path,
+                check=True,
+            )
+
+    if init_linters:
+        append_linter_config(project_path / "pyproject.toml")
+        typer.echo("✅ Linters/Formatters configured.")
+
     insert_author_details(project_path / "pyproject.toml", author, email)
 
-    shutil.copyfile(
-        TEMPLATES_DIR / "pre-commit" / "python.yaml",
-        project_path / ".pre-commit-config.yaml",
-    )
+    if init_pre_commit_hooks:
+        shutil.copyfile(
+            TEMPLATES_DIR / "pre-commit" / "python.yaml",
+            project_path / ".pre-commit-config.yaml",
+        )
+        subprocess.run(["pre-commit", "install"], cwd=project_path, check=True)
+        typer.echo("✅ Pre-commit hooks installed.")
 
     shutil.copyfile(
         TEMPLATES_DIR / "gitignore" / "python", project_path / ".gitignore"
     )
 
-    subprocess.run(["pre-commit", "install"], cwd=project_path, check=True)
+    if init_git:
+        subprocess.run(["git", "init"], cwd=project_name, check=True)
+        typer.echo("✅ Git initialized.")
 
     typer.echo("✅ FastAPI project ready!")

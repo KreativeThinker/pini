@@ -1,5 +1,4 @@
 import json
-import subprocess
 from pathlib import Path
 
 import typer
@@ -24,7 +23,7 @@ frameworks = [
 @app.command()
 def init():
     if not CONFIG_PATH.exists():
-        typer.echo("⚠️  Config file not found. Run `pinit config` first.")
+        typer.echo("⚠️ Config file not found. Run `pinit config` first.")
         raise typer.Exit()
     with open(CONFIG_PATH) as f:
         config = json.load(f)
@@ -66,23 +65,62 @@ def create():
 
     project_name = typer.prompt("📁 Project name")
 
+    init_git = (
+        Prompt.ask(
+            "Initialize git?", choices=["yes", "no"], default="yes"
+        ).lower()
+        == "yes"
+    )
+    init_commitizen = (
+        Prompt.ask(
+            "Initialize commitizen?", choices=["yes", "no"], default="yes"
+        ).lower()
+        == "yes"
+    )
+    init_linters = (
+        Prompt.ask(
+            "Initialize linters/formatters?",
+            choices=["yes", "no"],
+            default="yes",
+        ).lower()
+        == "yes"
+    )
+    init_pre_commit_hooks = (
+        Prompt.ask(
+            "Initialize pre-commit hooks?",
+            choices=["yes", "no"],
+            default="yes",
+        ).lower()
+        == "yes"
+    )
+
     config = json.load(CONFIG_PATH.open())
 
     if project_type == "fastapi":
         fastapi.install_fastapi(
-            project_name, config["author"], config["email"]
+            project_name,
+            config["author"],
+            config["email"],
+            init_git=init_git,
+            init_commitizen=init_commitizen,
+            init_linters=init_linters,
+            init_pre_commit_hooks=init_pre_commit_hooks,
         )
 
     elif project_type == "nextjs":
-        nextjs.install_nextjs(project_name, config["author"], config["email"])
+        nextjs.install_nextjs(
+            project_name,
+            config["author"],
+            config["email"],
+            init_git=init_git,
+            init_commitizen=init_commitizen,
+            init_linters=init_linters,
+            init_pre_commit_hooks=init_pre_commit_hooks,
+        )
     else:
         typer.echo("❌ This one isn’t implemented yet")
 
-    git_init = Prompt.ask(
-        "Initialize git?", choices=["yes", "no"], default="yes"
-    )
-    if git_init.lower() == "yes":
-        subprocess.run(["git", "init"], cwd=project_name)
+    typer.echo(f"🎉 Project '{project_name}' bootstrapped successfully!")
 
 
 if __name__ == "__main__":
