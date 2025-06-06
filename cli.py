@@ -11,6 +11,15 @@ app = typer.Typer()
 
 CONFIG_PATH = Path.home() / ".config" / "pinit_config.json"
 
+frameworks = [
+    "react + vite",
+    "nextjs",
+    "fastapi",
+    "django",
+    "django-rest-framework",
+    "python-base",
+]
+
 
 @app.command()
 def init():
@@ -41,16 +50,6 @@ def config():
     }
     CONFIG_PATH.write_text(json.dumps(config, indent=2))
     typer.echo("✅ Config saved!")
-
-
-frameworks = [
-    "react + vite",
-    "nextjs",
-    "fastapi",
-    "django",
-    "django-rest-framework",
-    "python-base",
-]
 
 
 @app.command()
