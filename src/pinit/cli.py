@@ -1,11 +1,12 @@
 import json
-from pathlib import Path
 
 import typer
 from rich.prompt import Prompt
 
+from pinit.config import CONFIG_PATH, config
+
 # Import all new setup modules
-from setup import (
+from pinit.setup import (
     django,
     django_rest_framework,
     fastapi,
@@ -16,7 +17,6 @@ from setup import (
 
 app = typer.Typer()
 
-CONFIG_PATH = Path.home() / ".config" / "pinit_config.json"
 
 frameworks = [
     "react + vite",
@@ -39,7 +39,7 @@ def init():
 
 
 @app.command()
-def config():
+def configure():
     author = typer.prompt("Author name")
     email = typer.prompt("Author email")
     package_managers = {
@@ -73,7 +73,6 @@ def create():
 
     project_name = typer.prompt("📁 Project name")
 
-    # New prompts for optional features
     init_git = (
         Prompt.ask(
             "Initialize git?", choices=["yes", "no"], default="yes"
@@ -103,13 +102,11 @@ def create():
         == "yes"
     )
 
-    config = json.load(CONFIG_PATH.open())
-
     if project_type == "fastapi":
         fastapi.install_fastapi(
             project_name,
-            config["author"],
-            config["email"],
+            config.author,
+            config.email,
             init_git=init_git,
             init_commitizen=init_commitizen,
             init_linters=init_linters,
@@ -118,8 +115,8 @@ def create():
     elif project_type == "nextjs":
         nextjs.install_nextjs(
             project_name,
-            config["author"],
-            config["email"],
+            config.author,
+            config.email,
             init_git=init_git,
             init_commitizen=init_commitizen,
             init_linters=init_linters,
@@ -128,8 +125,8 @@ def create():
     elif project_type == "react + vite":
         react_vite.install_react_vite(
             project_name,
-            config["author"],
-            config["email"],
+            config.author,
+            config.email,
             init_git=init_git,
             init_commitizen=init_commitizen,
             init_linters=init_linters,
@@ -138,8 +135,8 @@ def create():
     elif project_type == "django":
         django.install_django(
             project_name,
-            config["author"],
-            config["email"],
+            config.author,
+            config.email,
             init_git=init_git,
             init_commitizen=init_commitizen,
             init_linters=init_linters,
@@ -148,8 +145,8 @@ def create():
     elif project_type == "django-rest-framework":
         django_rest_framework.install_django_rest_framework(
             project_name,
-            config["author"],
-            config["email"],
+            config.author,
+            config.email,
             init_git=init_git,
             init_commitizen=init_commitizen,
             init_linters=init_linters,
@@ -158,8 +155,8 @@ def create():
     elif project_type == "python-base":
         python_base.install_python_base(
             project_name,
-            config["author"],
-            config["email"],
+            config.author,
+            config.email,
             init_git=init_git,
             init_commitizen=init_commitizen,
             init_linters=init_linters,
