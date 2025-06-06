@@ -3,10 +3,10 @@ import json
 import typer
 from rich.prompt import Prompt
 
-from pinit.config import CONFIG_PATH, config
+from pini.config import CONFIG_PATH, config
 
 # Import all new setup modules
-from pinit.setup import (
+from pini.setup import (
     django,
     django_rest_framework,
     fastapi,

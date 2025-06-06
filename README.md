@@ -1,8 +1,8 @@
-# 🚀 PInit — Project Initializer
+# 🚀 PIni — Project Initializer
 
-**PInit** stands for **Project Initializer** — a blazing-fast CLI tool to scaffold new projects in your favorite frameworks **with zero setup fuss**.
+**PIni** stands for **Project Initializer** — a blazing-fast CLI tool to scaffold new projects in your favorite frameworks **with zero setup fuss**.
 
-Whether you're starting a new **FastAPI**, **Django**, **DRF**, **Next.js**, or plain **Python** project, PInit gets you a clean, standardized, production-ready starter in seconds.
+Whether you're starting a new **FastAPI**, **Django**, **DRF**, **Next.js**, or plain **Python** project, PIni gets you a clean, standardized, production-ready starter in seconds.
 
 ---
 
@@ -72,7 +72,7 @@ All configs live under the `/templates` directory:
 ## 💡 Why?
 
 I got tired of rewriting the same setup boilerplate for every new idea?
-PInit exists so you can **stop configuring** and **start building** without compromising on code quality and commits.
+PIni exists so you can **stop configuring** and **start building** without compromising on code quality and commits.
 No need to create the same custom components for frontend, just import them into the templates directory and it will auto-replicate.
 
 In other words, this project is aimed at doing things in the best and laziest way possible.

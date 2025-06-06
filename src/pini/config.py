@@ -3,8 +3,8 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-CONFIG_PATH = Path.home() / ".config" / "pinit_config.json"
-TEMPLATES_DIR = Path(str(pkg_resources.files("pinit").joinpath("templates")))
+CONFIG_PATH = Path.home() / ".config" / "pini_config.json"
+TEMPLATES_DIR = Path(str(pkg_resources.files("pini").joinpath("templates")))
 
 
 @dataclass

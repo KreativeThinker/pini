@@ -5,7 +5,7 @@ from pathlib import Path
 import toml
 import typer
 
-from pinit.config import TEMPLATES_DIR
+from pini.config import TEMPLATES_DIR
 
 
 def append_linter_config_python_project(pyproject_path: Path):
@@ -49,7 +49,7 @@ def insert_author_details_python_project(
         toml.dump(data, f)
 
 
-def install_django(
+def install_python_base(
     project_name: str,
     author: str,
     email: str,
@@ -58,31 +58,20 @@ def install_django(
     init_linters: bool,
     init_pre_commit_hooks: bool,
 ):
-    typer.echo(f"🚀 Bootstrapping Django project: {project_name}")
+    typer.echo(f"🐍 Bootstrapping Python Base project: {project_name}")
 
     project_path = Path(project_name)
+    project_path.mkdir(
+        parents=True, exist_ok=True
+    )  # Create the project directory
 
-    subprocess.run(["mkdir", project_name], check=True)
-
+    # Initialize uv environment
     typer.echo("Initializing Python environment with uv...")
     subprocess.run(["uv", "init"], cwd=project_path, check=True)
     subprocess.run(["uv", "venv"], cwd=project_path, check=True)
     typer.echo("✅ uv environment initialized.")
 
-    typer.echo("📦 Installing core Django dependencies...")
-    subprocess.run(
-        ["uv", "add", "django"],
-        cwd=project_path,
-        check=True,
-    )
-    typer.echo("✅ Django installed.")
-
-    subprocess.run(
-        ["uv", "run", "django-admin", "startproject", "core", "."],
-        cwd=project_path,
-        check=True,
-    )
-
+    # Install dev dependencies conditionally
     dev_deps = []
     if init_linters or init_pre_commit_hooks:
         dev_deps.append("pre-commit")
@@ -100,6 +89,7 @@ def install_django(
         )
         typer.echo("✅ Dev dependencies installed.")
 
+    # Update pyproject.toml
     pyproject_path = project_path / "pyproject.toml"
     if init_linters:
         typer.echo("⚙️ Configuring linters/formatters...")
@@ -118,12 +108,14 @@ def install_django(
         subprocess.run(["pre-commit", "install"], cwd=project_path, check=True)
         typer.echo("✅ Pre-commit hooks installed.")
 
+    # Copy .gitignore
     shutil.copyfile(
-        TEMPLATES_DIR / "gitignore" / "python",
+        TEMPLATES_DIR / "gitignore" / "python",  # Re-use python gitignore
         project_path / ".gitignore",
     )
     typer.echo("✅ .gitignore copied.")
 
+    # Generate README.md
     readme_template = TEMPLATES_DIR / "README.md.tmpl"
     readme_dest = project_path / "README.md"
     readme_dest.write_text(
@@ -141,4 +133,4 @@ def install_django(
         subprocess.run(["cz", "init"], cwd=project_path, check=True)
         typer.echo("✅ Commitizen initialized.")
 
-    typer.echo("🎉 Django project setup complete!")
+    typer.echo("🎉 Python Base project setup complete!")

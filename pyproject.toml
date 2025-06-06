@@ -1,5 +1,5 @@
 [project]
-name = "pinit"
+name = "pini"
 version = "0.2.0"
 description = "An opinionated Python project initializer that sets up a new project with sensible defaults."
 readme = "README.md"
@@ -18,7 +18,7 @@ dependencies = [
 
 
 [project.scripts]
-pinit = "pinit.cli:app"
+pini = "pini.cli:app"
 
 [build-system]
 requires = ["setuptools>=61.0.0"]
@@ -28,7 +28,7 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-"pinit" = ["templates/**/*"] # Include all files recursively in 'templates' directory within 'pinit' package
+"pini" = ["templates/**/*"] # Include all files recursively in 'templates' directory within 'pini' package
 
 [dependency-groups]
 dev = [

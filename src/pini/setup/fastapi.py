@@ -5,7 +5,7 @@ from pathlib import Path
 import toml
 import typer
 
-from pinit.config import TEMPLATES_DIR
+from pini.config import TEMPLATES_DIR
 
 
 def append_linter_config(pyproject_path: Path):
