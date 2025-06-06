@@ -12,11 +12,17 @@ dependencies = [
 
 
 [project.scripts]
-pinit = "cli:app"
+pinit = "pinit.cli:app"
 
 [build-system]
 requires = ["setuptools>=61.0.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"pinit" = ["templates/**/*"] # Include all files recursively in 'templates' directory within 'pinit' package
 
 [dependency-groups]
 dev = [
