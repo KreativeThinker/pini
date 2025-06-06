@@ -1,6 +1,6 @@
 [project]
 name = "pini"
-version = "1.0.0"
+version = "1.0.1"
 description = "An opinionated Python project initializer that sets up a new project with sensible defaults."
 readme = "README.md"
 license = "MIT"
@@ -56,6 +56,5 @@ tag_format = "v$version"
 version_scheme = "pep440"
 version_provider = "uv"
 update_changelog_on_bump = true
-major_version_zero = true
 
 
