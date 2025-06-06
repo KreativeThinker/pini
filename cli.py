@@ -4,7 +4,15 @@ from pathlib import Path
 import typer
 from rich.prompt import Prompt
 
-from setup import fastapi, nextjs
+# Import all new setup modules
+from setup import (
+    django,
+    django_rest_framework,
+    fastapi,
+    nextjs,
+    python_base,
+    react_vite,
+)
 
 app = typer.Typer()
 
@@ -65,6 +73,7 @@ def create():
 
     project_name = typer.prompt("📁 Project name")
 
+    # New prompts for optional features
     init_git = (
         Prompt.ask(
             "Initialize git?", choices=["yes", "no"], default="yes"
@@ -106,9 +115,48 @@ def create():
             init_linters=init_linters,
             init_pre_commit_hooks=init_pre_commit_hooks,
         )
-
     elif project_type == "nextjs":
         nextjs.install_nextjs(
+            project_name,
+            config["author"],
+            config["email"],
+            init_git=init_git,
+            init_commitizen=init_commitizen,
+            init_linters=init_linters,
+            init_pre_commit_hooks=init_pre_commit_hooks,
+        )
+    elif project_type == "react + vite":
+        react_vite.install_react_vite(
+            project_name,
+            config["author"],
+            config["email"],
+            init_git=init_git,
+            init_commitizen=init_commitizen,
+            init_linters=init_linters,
+            init_pre_commit_hooks=init_pre_commit_hooks,
+        )
+    elif project_type == "django":
+        django.install_django(
+            project_name,
+            config["author"],
+            config["email"],
+            init_git=init_git,
+            init_commitizen=init_commitizen,
+            init_linters=init_linters,
+            init_pre_commit_hooks=init_pre_commit_hooks,
+        )
+    elif project_type == "django-rest-framework":
+        django_rest_framework.install_django_rest_framework(
+            project_name,
+            config["author"],
+            config["email"],
+            init_git=init_git,
+            init_commitizen=init_commitizen,
+            init_linters=init_linters,
+            init_pre_commit_hooks=init_pre_commit_hooks,
+        )
+    elif project_type == "python-base":
+        python_base.install_python_base(
             project_name,
             config["author"],
             config["email"],
