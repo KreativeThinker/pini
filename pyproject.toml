@@ -1,8 +1,14 @@
 [project]
 name = "pinit"
 version = "0.2.0"
-description = "Add your description here"
+description = "An opinionated Python project initializer that sets up a new project with sensible defaults."
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENCSE*"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
 requires-python = ">=3.12"
 dependencies = [
     "rich>=14.0.0",
