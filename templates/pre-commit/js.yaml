@@ -1,11 +1,4 @@
 repos:
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.2.5
-    hooks:
-      - id: prettier
-        name: prettier
-        types_or: [javascript, typescript, json, css, html, markdown, yaml]
-
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.8.2
     hooks:
@@ -18,4 +11,4 @@ repos:
     rev: v8.22.1
     hooks:
       - id: gitleaks
-        name: "🔒 security · Detect hardcoded secrets"
+        name: "gitleaks"
