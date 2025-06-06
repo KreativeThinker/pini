@@ -5,7 +5,7 @@ from pathlib import Path
 import typer
 from rich.prompt import Prompt
 
-from setup import fastapi
+from setup import fastapi, nextjs
 
 app = typer.Typer()
 
@@ -72,6 +72,9 @@ def create():
         fastapi.install_fastapi(
             project_name, config["author"], config["email"]
         )
+
+    elif project_type == "nextjs":
+        nextjs.install_nextjs(project_name, config["author"], config["email"])
     else:
         typer.echo("❌ This one isn’t implemented yet")
 
