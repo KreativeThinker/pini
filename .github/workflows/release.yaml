@@ -22,11 +22,8 @@ jobs:
       - name: Install uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
-      - name: Install build backend
-        run: uv pip install --system build
-
       - name: Build package
-        run: uv pip run python -m build
+        run: uv build
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
