@@ -33,14 +33,12 @@ Whether you're starting a new **FastAPI**, **Django**, **DRF**, **Next.js**, or 
 ## 🚀 Usage & Installation
 
 ```bash
-# Run the CLI
-python cli.py
+uv tool install pini
 
-# Follow the prompts:
-# - Choose framework
-# - Enter project name
-# - Enter author/email
-# - Git init? Yes/No
+pini configure
+pini create
+
+# Follow the prompts and enjoy!
 ```
 
 ---
