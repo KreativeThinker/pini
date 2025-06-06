@@ -23,7 +23,7 @@ jobs:
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: Install build backend
-        run: uv pip install build
+        run: uv pip install --system build
 
       - name: Build package
         run: uv pip run python -m build
