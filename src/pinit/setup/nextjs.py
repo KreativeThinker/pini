@@ -5,7 +5,7 @@ from pathlib import Path
 
 import typer
 
-TEMPLATES_DIR = Path(__file__).parent.parent / "templates"
+from pinit.config import TEMPLATES_DIR
 
 
 def install_nextjs(
