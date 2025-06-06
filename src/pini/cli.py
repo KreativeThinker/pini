@@ -31,7 +31,7 @@ frameworks = [
 @app.command()
 def init():
     if not CONFIG_PATH.exists():
-        typer.echo("⚠️ Config file not found. Run `pinit config` first.")
+        typer.echo("⚠️ Config file not found. Run `pini config` first.")
         raise typer.Exit()
     with open(CONFIG_PATH) as f:
         config = json.load(f)

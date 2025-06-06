@@ -6,7 +6,7 @@ body:
   - type: textarea
     attributes:
       label: What feature do you want?
-      description: Describe what you'd like PInit to do.
+      description: Describe what you'd like PIni to do.
     validations:
       required: true
 

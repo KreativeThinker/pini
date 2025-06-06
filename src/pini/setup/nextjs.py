@@ -5,7 +5,7 @@ from pathlib import Path
 
 import typer
 
-from pinit.config import TEMPLATES_DIR
+from pini.config import TEMPLATES_DIR
 
 
 def install_nextjs(
