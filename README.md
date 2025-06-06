@@ -1,40 +1,90 @@
-# 🛠️ PInit
+# 🚀 PInit — Project Initializer
 
-**PInit** (short for **Project Initializer**) is your go-to CLI for bootstrapping new projects across popular frameworks — fast, consistent, and production-ready.
+**PInit** stands for **Project Initializer** — a blazing-fast CLI tool to scaffold new projects in your favorite frameworks **with zero setup fuss**.
 
-### ✨ Features
-
-- 🚀 One-line setup for:
-
-  - `react+vite`
-  - `nextjs`
-  - `fastapi`
-  - `django`
-  - `django-rest-framework`
-  - plain `python`
-
-- 🧹 Pre-configured:
-
-  - Linters & formatters (`prettier`, `black`, `isort`, `flake8`, etc.)
-  - `pre-commit` hooks
-  - `commitizen` for conventional commits
-
-- 🐳 Starter Dockerfiles for web projects
-- 📄 Auto-generated README, license, config files
-- 🧰 Uses `pnpm` for JS/TS, `uv` for Python
-
-### 🧪 Why?
-
-Starting new projects sucks when you repeat the same boilerplate steps. PInit automates all of that — without skipping on best practices.
-
-### 🏁 Usage
-
-```bash
-./pinit.sh
-```
-
-(Coming soon: interactive menu like `create-next-app`!)
+Whether you're starting a new **FastAPI**, **Django**, **DRF**, **Next.js**, or plain **Python** project, PInit gets you a clean, standardized, production-ready starter in seconds.
 
 ---
 
-Let me know if you want badges, install instructions, or a gif demo.
+## ⚙️ Features
+
+- ✅ Scaffolds common frameworks (FastAPI, Django, DRF, Next.js, Python)
+- 🔧 Pre-configured **linters**, **formatters**, and **pre-commit hooks**
+- 🧼 Opinionated defaults for **code style**, **project structure**, and **.gitignore**
+- 📝 Auto-generates README and adds author info
+- 🔒 Git initialized + first commit (so Commitizen doesn’t blow up)
+- ✨ Commitizen + semantic commits ready out-of-the-box
+
+---
+
+## 📦 Supported Frameworks
+
+| Framework     | Stack   | Extras                                             |
+| ------------- | ------- | -------------------------------------------------- |
+| FastAPI       | Python  | uv, black, flake8, isort, pre-commit               |
+| Django        | Python  | uv, black, flake8, isort, pre-commit               |
+| DRF           | Python  | uv, black, flake8, isort, pre-commit               |
+| Next.js       | Node/TS | Tailwind, Prettier, ESLint, Pre-commit, Commitizen |
+| Python (bare) | Python  | Linter config, Git, pyproject.toml, etc.           |
+| Python (CV)   | Python  | TODO                                               |
+
+---
+
+## 🚀 Usage & Installation
+
+```bash
+# Run the CLI
+python cli.py
+
+# Follow the prompts:
+# - Choose framework
+# - Enter project name
+# - Enter author/email
+# - Git init? Yes/No
+```
+
+---
+
+## 🧰 Templates
+
+All configs live under the `/templates` directory:
+
+- `.gitignore`
+- `.pre-commit-config.yaml`
+- `README.md.tmpl`
+- `prettierrc`, `prettierignore`
+- `ISSUE_TEMPLATES`
+- More to come (_maybe_)
+
+---
+
+## 🛣️ Roadmap
+
+- [ ] Add testing frameworks (pytest, vitest)
+- [ ] Add optional Dockerfile defaults
+- [ ] Improve Commitizen integration in JS flows
+- [ ] CLI flags for silent mode / auto init
+- [ ] Add more frameworks
+- [ ] Add Dockerized database initialization (MySQL, PostgreSQL, Supabase)
+
+---
+
+## 💡 Why?
+
+I got tired of rewriting the same setup boilerplate for every new idea?
+PInit exists so you can **stop configuring** and **start building** without compromising on code quality and commits.
+No need to create the same custom components for frontend, just import them into the templates directory and it will auto-replicate.
+
+In other words, this project is aimed at doing things in the best and laziest way possible.
+
+---
+
+## 🤝 Contributing
+
+PRs welcome — just follow the code style and keep templates clean.
+
+---
+
+## 📜 License
+
+MIT — do whatever you want, just don't make it worse 😄
