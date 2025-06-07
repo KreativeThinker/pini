@@ -54,6 +54,12 @@
 - **cli**: reorder frameworks
 - **version**: update python version
 
+## v1.0.3 (2025-06-07)
+
+### Fix
+
+- **setup**: switch versioning schema
+
 ## v1.0.2 (2025-06-06)
 
 ## v1.0.1 (2025-06-06)
