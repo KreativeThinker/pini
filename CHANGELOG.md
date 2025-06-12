@@ -54,6 +54,12 @@
 - **cli**: reorder frameworks
 - **version**: update python version
 
+## v1.0.5 (2025-06-12)
+
+### Fix
+
+- **config**: handle config file not found error
+
 ## v1.0.4 (2025-06-12)
 
 ### Fix
