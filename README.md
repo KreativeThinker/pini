@@ -4,6 +4,8 @@
 
 Whether you're starting a new **FastAPI**, **Django**, **DRF**, **Next.js**, or plain **Python** project, PIni gets you a clean, standardized, production-ready starter in seconds.
 
+<img src='pini-demo.gif' style="width: 100%; height: auto;" />
+
 ---
 
 ## ⚙️ Features
