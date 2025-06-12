@@ -3,6 +3,8 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+import typer
+
 CONFIG_PATH = Path.home() / ".config" / "pini_config.json"
 TEMPLATES_DIR = Path(str(pkg_resources.files("pini").joinpath("templates")))
 
@@ -14,4 +16,18 @@ class Config:
     package_managers: dict[str, str]
 
 
-config: Config = Config(**json.load(CONFIG_PATH.open()))
+try:
+    with CONFIG_PATH.open() as f:
+        config: Config = Config(**json.load(f))
+except FileNotFoundError:
+    typer.secho(
+        "Config not found. Run 'pini configure' first.",
+        fg=typer.colors.RED,
+        err=True,
+    )
+    raise typer.Exit(code=1)
+except (json.JSONDecodeError, TypeError) as e:
+    typer.secho(
+        f"Invalid config file format: {e}", fg=typer.colors.RED, err=True
+    )
+    raise typer.Exit(code=1)
