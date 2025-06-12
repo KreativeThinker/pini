@@ -3,7 +3,7 @@ import json
 import typer
 from rich.prompt import Prompt
 
-from pini.config import CONFIG_PATH, config
+from pini.config import CONFIG_PATH, Config, load_config
 
 # Import all new setup modules
 from pini.setup import (
@@ -31,11 +31,10 @@ frameworks = [
 @app.command()
 def init():
     if not CONFIG_PATH.exists():
-        typer.echo("⚠️ Config file not found. Run `pini config` first.")
+        typer.echo("⚠️ Config file not found. Run `pini configure` first.")
         raise typer.Exit()
-    with open(CONFIG_PATH) as f:
-        config = json.load(f)
-    typer.echo(f"👋 Hello {config['author']}! Let’s bootstrap a project.")
+    config: Config = load_config()
+    typer.echo(f"👋 Hello {config.author}! Let’s bootstrap a project.")
 
 
 @app.command()
@@ -61,6 +60,11 @@ def configure():
 
 @app.command()
 def create():
+    if not CONFIG_PATH.exists():
+        typer.echo("⚠️ Config file not found. Run `pini configure` first.")
+        raise typer.Exit()
+    config: Config = load_config()
+
     typer.echo("📦 Pick a project type:\n")
     for idx, fw in enumerate(frameworks, 1):
         typer.echo(f"{idx}. {fw}")

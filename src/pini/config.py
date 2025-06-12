@@ -16,18 +16,19 @@ class Config:
     package_managers: dict[str, str]
 
 
-try:
-    with CONFIG_PATH.open() as f:
-        config: Config = Config(**json.load(f))
-except FileNotFoundError:
-    typer.secho(
-        "Config not found. Run 'pini configure' first.",
-        fg=typer.colors.RED,
-        err=True,
-    )
-    raise typer.Exit(code=1)
-except (json.JSONDecodeError, TypeError) as e:
-    typer.secho(
-        f"Invalid config file format: {e}", fg=typer.colors.RED, err=True
-    )
-    raise typer.Exit(code=1)
+def load_config() -> Config:
+    try:
+        with CONFIG_PATH.open() as f:
+            return Config(**json.load(f))
+    except FileNotFoundError:
+        typer.secho(
+            "Config not found. Run 'pini configure' first.",
+            fg=typer.colors.RED,
+            err=True,
+        )
+        raise typer.Exit(code=1)
+    except (json.JSONDecodeError, TypeError) as e:
+        typer.secho(
+            f"Invalid config file format: {e}", fg=typer.colors.RED, err=True
+        )
+        raise typer.Exit(code=1)
