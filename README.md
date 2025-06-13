@@ -19,6 +19,16 @@ Whether you're starting a new **FastAPI**, **Django**, **DRF**, **Next.js**, or 
 
 ---
 
+## 💡 Why?
+
+I got tired of rewriting the same setup boilerplate for every new idea?
+PIni exists so you can **stop configuring** and **start building** without compromising on code quality and commits.
+No need to create the same custom components for frontend, just import them into the templates directory and it will auto-replicate.
+
+In other words, this project is aimed at doing things in the best and laziest way possible.
+
+---
+
 ## 📦 Supported Frameworks
 
 | Framework     | Stack   | Extras                                             |
@@ -27,7 +37,7 @@ Whether you're starting a new **FastAPI**, **Django**, **DRF**, **Next.js**, or 
 | Django        | Python  | uv, black, flake8, isort, pre-commit               |
 | DRF           | Python  | uv, black, flake8, isort, pre-commit               |
 | Next.js       | Node/TS | Tailwind, Prettier, ESLint, Pre-commit, Commitizen |
-| Python (bare) | Python  | Linter config, Git, pyproject.toml, etc.           |
+| Python (base) | Python  | Linter config, Git, pyproject.toml, etc.           |
 | Python (CV)   | Python  | TODO                                               |
 
 ---
@@ -66,16 +76,6 @@ All configs live under the `/templates` directory:
 - [ ] CLI flags for silent mode / auto init
 - [ ] Add more frameworks
 - [ ] Add Dockerized database initialization (MySQL, PostgreSQL, Supabase)
-
----
-
-## 💡 Why?
-
-I got tired of rewriting the same setup boilerplate for every new idea?
-PIni exists so you can **stop configuring** and **start building** without compromising on code quality and commits.
-No need to create the same custom components for frontend, just import them into the templates directory and it will auto-replicate.
-
-In other words, this project is aimed at doing things in the best and laziest way possible.
 
 ---
 
