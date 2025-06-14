@@ -54,6 +54,21 @@
 - **cli**: reorder frameworks
 - **version**: update python version
 
+## v1.1.0 (2025-06-14)
+
+### Feat
+
+- **templates**: README template
+- **templates**: add pyproject submodule templates
+
+### Fix
+
+- **templates**: template pyproject/package.toml
+
+### Refactor
+
+- **setup**: Separate linter and commitizen installation:
+
 ## v1.0.5 (2025-06-12)
 
 ### Fix

@@ -12,6 +12,7 @@ from pini.setup import (
     fastapi,
     nextjs,
     python_base,
+    python_package,
     react_vite,
 )
 
@@ -25,6 +26,7 @@ frameworks = [
     "django",
     "django-rest-framework",
     "python-base",
+    "python_package",
 ]
 
 
@@ -158,6 +160,16 @@ def create():
         )
     elif project_type == "python-base":
         python_base.install_python_base(
+            project_name,
+            config.author,
+            config.email,
+            init_git=init_git,
+            init_commitizen=init_commitizen,
+            init_linters=init_linters,
+            init_pre_commit_hooks=init_pre_commit_hooks,
+        )
+    elif project_type == "python-base":
+        python_package.install_python_package(
             project_name,
             config.author,
             config.email,
