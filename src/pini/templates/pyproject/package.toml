@@ -1,5 +1,5 @@
 [project.scripts]
-pini = "pini.cli:app"
+project_name = "project_entrypoint:command"
 
 [build-system]
 requires = ["setuptools>=61.0.0"]
