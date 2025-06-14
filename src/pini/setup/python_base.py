@@ -8,32 +8,11 @@ import typer
 from pini.config import TEMPLATES_DIR
 
 
-def append_linter_config_python_project(pyproject_path: Path):
-    # Re-use the linter config from fastapi
-    config = {
-        "tool": {
-            "black": {"line-length": 79},
-            "isort": {"profile": "black", "line_length": 79},
-            "flake8": {
-                "max-line-length": 79,
-                "extend-ignore": ["E203", "W503"],
-            },
-            "commitizen": {
-                "name": "cz_conventional_commits",
-                "tag_format": "v$version",
-                "version_scheme": "pep440",
-                "version_provider": "uv",
-                "update_changelog_on_bump": True,
-                "major_version_zero": True,
-            },
-        }
-    }
-    data = {}
-    if pyproject_path.exists():
-        data = toml.load(pyproject_path)
-    data.update(config)
-    with open(pyproject_path, "w") as f:
-        toml.dump(data, f)
+def append_pyproject_section(source_path: Path, target_path: Path):
+    with open(source_path, "r") as src, open(target_path, "a") as tgt:
+        tgt.write("\n")
+        tgt.write(src.read())
+        tgt.write("\n")
 
 
 def insert_author_details_python_project(
@@ -61,17 +40,13 @@ def install_python_base(
     typer.echo(f"🐍 Bootstrapping Python Base project: {project_name}")
 
     project_path = Path(project_name)
-    project_path.mkdir(
-        parents=True, exist_ok=True
-    )  # Create the project directory
+    project_path.mkdir(parents=True, exist_ok=True)
 
-    # Initialize uv environment
     typer.echo("Initializing Python environment with uv...")
     subprocess.run(["uv", "init"], cwd=project_path, check=True)
     subprocess.run(["uv", "venv"], cwd=project_path, check=True)
     typer.echo("✅ uv environment initialized.")
 
-    # Install dev dependencies conditionally
     dev_deps = []
     if init_linters or init_pre_commit_hooks:
         dev_deps.append("pre-commit")
@@ -93,7 +68,9 @@ def install_python_base(
     pyproject_path = project_path / "pyproject.toml"
     if init_linters:
         typer.echo("⚙️ Configuring linters/formatters...")
-        append_linter_config_python_project(pyproject_path)
+        append_pyproject_section(
+            TEMPLATES_DIR / "pyproject" / "formatters.toml", pyproject_path
+        )
         typer.echo("✅ Linters/Formatters configured.")
 
     insert_author_details_python_project(pyproject_path, author, email)
@@ -130,6 +107,9 @@ def install_python_base(
 
     if init_commitizen:
         typer.echo("Initializing Commitizen...")
+        append_pyproject_section(
+            TEMPLATES_DIR / "pyproject" / "commitizen.toml", pyproject_path
+        )
         subprocess.run(["cz", "init"], cwd=project_path, check=True)
         typer.echo("✅ Commitizen initialized.")
 
