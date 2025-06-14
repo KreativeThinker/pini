@@ -26,7 +26,7 @@ frameworks = [
     "django",
     "django-rest-framework",
     "python-base",
-    "python_package",
+    "python-package",
 ]
 
 
@@ -168,7 +168,7 @@ def create():
             init_linters=init_linters,
             init_pre_commit_hooks=init_pre_commit_hooks,
         )
-    elif project_type == "python-base":
+    elif project_type == "python-package":
         python_package.install_python_package(
             project_name,
             config.author,
