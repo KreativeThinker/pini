@@ -54,6 +54,12 @@
 - **cli**: reorder frameworks
 - **version**: update python version
 
+## v1.2.0 (2025-06-14)
+
+### Feat
+
+- **setup**: add python-package setup
+
 ## v1.1.0 (2025-06-14)
 
 ### Feat
