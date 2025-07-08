@@ -4,7 +4,6 @@ from pathlib import Path
 import toml
 import typer
 
-from pini.config import TEMPLATES_DIR
 from pini.setup import python_base
 
 
