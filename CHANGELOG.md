@@ -54,6 +54,13 @@
 - **cli**: reorder frameworks
 - **version**: update python version
 
+## v1.3.0 (2025-07-08)
+
+### Fix
+
+- **setup/fastapi**: use python-base as python env installer
+- **cli**: abort if path exists or overwrite
+
 ## v1.2.1 (2025-06-14)
 
 ### Fix
