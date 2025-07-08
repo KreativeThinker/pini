@@ -1,4 +1,6 @@
 import json
+import subprocess
+from pathlib import Path
 
 import typer
 from rich.prompt import Prompt
@@ -78,6 +80,26 @@ def create():
     project_type = frameworks[int(choice) - 1]
 
     project_name = typer.prompt("📁 Project name")
+    project_path: Path = Path(project_name)
+    if project_path.exists():
+        if (
+            not Prompt.ask(
+                f"⚠️ Project '{project_name}' already exists. Overwrite?",
+                choices=["yes", "no"],
+                default="no",
+            ).lower()
+            == "yes"
+        ):
+            typer.echo("❌ Aborting project creation.")
+            raise typer.Exit()
+        else:
+            typer.echo(f"🗑️ Deleting existing project '{project_name}'...")
+            for item in project_path.iterdir():
+                if item.is_dir():
+                    subprocess.run(["rm", "-rf", str(item)], check=True)
+                else:
+                    item.unlink()
+            project_path.rmdir()
 
     init_git = (
         Prompt.ask(
@@ -181,6 +203,13 @@ def create():
     else:
         typer.echo("❌ This one isn’t implemented yet")
 
+    if init_git:
+        subprocess.run(["git", "add", "."], cwd=project_name, check=True)
+        subprocess.run(
+            ["git", "commit", "-m", "Initialized with PIni"],
+            cwd=project_name,
+            check=True,
+        )
     typer.echo(f"🎉 Project '{project_name}' bootstrapped successfully!")
 
 
