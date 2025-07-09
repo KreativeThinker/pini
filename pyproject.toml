@@ -37,18 +37,19 @@ dev = [
     "flake8>=7.2.0",
     "isort>=6.0.1",
     "pre-commit>=4.2.0",
+    "ruff>=0.12.2",
 ]
-
-[tool.black]
-line-length =  79
 
 [tool.isort]
 profile = "black"
 line_length = 79
 
-[tool.flake8]
-max-line-length = 79
-extend-ignore = ["E203", "W503"]  # For compatibility with Black (optional)
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
 
 [tool.commitizen]
 name = "cz_conventional_commits"
