@@ -51,7 +51,7 @@ def install_python_base(
     if init_linters or init_pre_commit_hooks:
         dev_deps.append("pre-commit")
         if init_linters:
-            dev_deps.extend(["black", "isort", "flake8"])
+            dev_deps.extend(["isort", "ruff"])
         if init_commitizen:
             dev_deps.append("commitizen")
 
