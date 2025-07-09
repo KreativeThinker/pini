@@ -1,9 +1,12 @@
+import shutil
 import subprocess
 from pathlib import Path
+from typing import List
 
 import toml
 import typer
 
+from pini.config import TEMPLATES_DIR
 from pini.setup import python_base
 
 
@@ -39,9 +42,32 @@ def install_fastapi(
     project_path = Path(project_name)
 
     subprocess.run(
-        ["uv", "add", "fastapi", "uvicorn[standard]", "pydantic"],
+        ["uv", "add", "fastapi", "uvicorn[standard]", "pydantic", "gunicorn"],
         cwd=project_path,
         check=True,
     )
+
+    typer.echo("🔧 Configuring Directory Structure")
+    dir_structure: List[Path] = [
+        project_path / "app" / "__init__.py",
+        project_path / "app" / "api" / "__init__.py",
+        project_path / "app" / "models" / "__init__.py",
+        project_path / "app" / "utils" / "__init__.py",
+        project_path / "tests" / "__init__.py",
+        project_path / "tests" / "test_main.py",
+    ]
+
+    for path in dir_structure:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.touch()
+
+    typer.echo("Copying standard configuration files")
+    shutil.copytree(
+        TEMPLATES_DIR / "frameworks" / "fastapi",
+        project_path / ".",
+        dirs_exist_ok=True,
+    )
+
+    # Add optional ORM setup
 
     typer.echo("✅ FastAPI project ready!")
