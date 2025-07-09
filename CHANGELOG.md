@@ -54,6 +54,16 @@
 - **cli**: reorder frameworks
 - **version**: update python version
 
+## v1.4.1 (2025-07-09)
+
+### BREAKING CHANGE
+
+- Switch linting and formating to ruff
+
+### Feat
+
+- switch to ruff
+
 ## v1.4.0 (2025-07-09)
 
 ### Feat
