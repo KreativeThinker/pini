@@ -54,6 +54,12 @@
 - **cli**: reorder frameworks
 - **version**: update python version
 
+## v1.4.0 (2025-07-09)
+
+### Feat
+
+- **fastapi**: add full fastapi template
+
 ## v1.3.0 (2025-07-08)
 
 ### Fix
