@@ -1,6 +1,6 @@
 [project]
 name = "pini"
-version = "1.3.0"
+version = "1.4.0"
 description = "An opinionated Python project initializer that sets up a new project with sensible defaults."
 readme = "README.md"
 license = "MIT"
