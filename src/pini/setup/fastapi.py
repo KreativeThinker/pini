@@ -68,6 +68,24 @@ def install_fastapi(
         dirs_exist_ok=True,
     )
 
+    if init_linters:
+        typer.echo("🔧 Running linters and formatters")
+        subprocess.run(
+            ["ruff", "check", "--fix"],
+            cwd=project_path,
+            check=True,
+        )
+        subprocess.run(
+            ["ruff", "format"],
+            cwd=project_path,
+            check=True,
+        )
+        subprocess.run(
+            ["isort", "."],
+            cwd=project_path,
+            check=True,
+        )
+
     # Add optional ORM setup
 
     typer.echo("✅ FastAPI project ready!")
