@@ -1,3 +1,9 @@
+## v1.4.3 (2025-07-10)
+
+### Fix
+
+- fix isort for fastapi
+
 ## v1.4.2 (2025-07-09)
 
 ### BREAKING CHANGE
