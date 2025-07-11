@@ -1,3 +1,9 @@
+## v1.4.5 (2025-07-11)
+
+### Fix
+
+- minor patch
+
 ## v1.4.4 (2025-07-11)
 
 ### BREAKING CHANGE
