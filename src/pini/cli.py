@@ -206,7 +206,7 @@ def create():
     if init_git:
         subprocess.run(["git", "add", "."], cwd=project_name, check=True)
         if init_pre_commit_hooks:
-            subprocess.run("pre-commit", "run", cwd=project_name, check=True)
+            subprocess.run(["pre-commit", "run"], cwd=project_name, check=True)
             subprocess.run(["git", "add", "."], cwd=project_name, check=True)
         subprocess.run(
             ["git", "commit", "-m", "Initialized with PIni"],
