@@ -1,3 +1,22 @@
+## v1.4.4 (2025-07-11)
+
+### BREAKING CHANGE
+
+- Switch linting and formating to ruff
+
+### Feat
+
+- switch to ruff
+- **fastapi**: add full fastapi template
+
+### Fix
+
+- git add after pre-commit
+- run pre-commits before making pini commit
+- fix isort for fastapi
+- **setup/fastapi**: use python-base as python env installer
+- **cli**: abort if path exists or overwrite
+
 ## v1.4.3 (2025-07-10)
 
 ### Fix
