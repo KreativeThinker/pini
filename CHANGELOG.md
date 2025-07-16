@@ -1,3 +1,9 @@
+## v1.5.0 (2025-07-17)
+
+### Fix
+
+- **CI and fixes**: add workflows, segregate templates, update base python isntallation
+
 ## v1.4.7 (2025-07-13)
 
 ### Refactor
