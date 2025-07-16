@@ -80,7 +80,7 @@ def install_react_vite(
     )
 
     shutil.copyfile(
-        TEMPLATES_DIR / "gitignore" / "vite",
+        TEMPLATES_DIR / "github" / "gitignore" / "vite",
         project_path / ".gitignore",
     )
     typer.echo("✅ .gitignore copied.")

@@ -95,7 +95,7 @@ def install_nextjs(
         typer.echo("✅ Pre-commit hooks installed and Prettier configured.")
 
     shutil.copyfile(
-        TEMPLATES_DIR / "gitignore" / "nextjs",
+        TEMPLATES_DIR / "github" / "gitignore" / "nextjs",
         project_path / ".gitignore",
     )
 

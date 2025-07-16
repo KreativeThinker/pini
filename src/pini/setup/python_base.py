@@ -87,7 +87,10 @@ def install_python_base(
 
     # Copy .gitignore
     shutil.copyfile(
-        TEMPLATES_DIR / "gitignore" / "python",  # Re-use python gitignore
+        TEMPLATES_DIR
+        / "github"
+        / "gitignore"
+        / "python",  # Re-use python gitignore
         project_path / ".gitignore",
     )
     typer.echo("✅ .gitignore copied.")

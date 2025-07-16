@@ -1,3 +1,4 @@
+import shutil
 from pathlib import Path
 
 import toml
@@ -56,6 +57,14 @@ def install_python_package(
     append_pyproject_section(
         TEMPLATES_DIR / "pyproject" / "package.toml",
         project_path / "pyproject.toml",
+    )
+
+    typer.echo("Copying Package Release Workflow Script")
+    package_workflow_path = project_path / ".github" / "workflows"
+    package_workflow_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(
+        TEMPLATES_DIR / "github" / "workflows" / "python_package_release.yaml",
+        package_workflow_path,
     )
 
     typer.echo("✅ PyPI packaging enhancements complete.")
