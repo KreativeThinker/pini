@@ -1,3 +1,13 @@
+## v1.5.2 (2025-07-17)
+
+### Feat
+
+- issue template copying and license copy
+
+### Fix
+
+- add use_defaults
+
 ## v1.5.1 (2025-07-17)
 
 ### Fix
