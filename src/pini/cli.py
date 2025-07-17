@@ -1,11 +1,12 @@
 import json
+import shutil
 import subprocess
 from pathlib import Path
 
 import typer
 from rich.prompt import Prompt
 
-from pini.config import CONFIG_PATH, Config, load_config
+from pini.config import CONFIG_PATH, TEMPLATES_DIR, Config, load_config
 
 # Import all new setup modules
 from pini.setup import (
@@ -138,11 +139,20 @@ def create():
             ).lower()
             == "yes"
         )
+        copy_issue_templates = (
+            Prompt.ask(
+                "Copy default issue templates?",
+                choices=["yes", "no"],
+                default="yes",
+            ).lower()
+            == "yes"
+        )
     else:
         init_git = True
         init_commitizen = True
         init_linters = True
         init_pre_commit_hooks = True
+        copy_issue_templates = True
 
     if project_type == "fastapi":
         fastapi.install_fastapi(
@@ -216,6 +226,20 @@ def create():
         )
     else:
         typer.echo("❌ This one isn’t implemented yet")
+
+    if copy_issue_templates:
+        issues_templates = project_path / ".github" / "ISSUE_TEMPLATE"
+        if not issues_templates.exists():
+            issues_templates.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(
+            TEMPLATES_DIR / "github" / "issues",
+            issues_templates,
+            dirs_exist_ok=True,
+        )
+        typer.echo("Created default issue templates")
+
+    shutil.copyfile(TEMPLATES_DIR / "LICENSE", project_path / "LICENSE")
+    # TODO: Move README setup to this stage if not doing any specific readme setup for different frameworks
 
     if init_git:
         subprocess.run(["git", "add", "."], cwd=project_name, check=True)
