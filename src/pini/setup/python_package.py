@@ -60,7 +60,9 @@ def install_python_package(
     )
 
     typer.echo("Copying Package Release Workflow Script")
-    package_workflow_path = project_path / ".github" / "workflows"
+    package_workflow_path = (
+        project_path / ".github" / "workflows" / "release.yml"
+    )
     package_workflow_path.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(
         TEMPLATES_DIR / "github" / "workflows" / "python_package_release.yaml",
