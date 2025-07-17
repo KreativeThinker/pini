@@ -101,34 +101,48 @@ def create():
                     item.unlink()
             project_path.rmdir()
 
-    init_git = (
+    use_defaults = (
         Prompt.ask(
-            "Initialize git?", choices=["yes", "no"], default="yes"
-        ).lower()
-        == "yes"
-    )
-    init_commitizen = (
-        Prompt.ask(
-            "Initialize commitizen?", choices=["yes", "no"], default="yes"
-        ).lower()
-        == "yes"
-    )
-    init_linters = (
-        Prompt.ask(
-            "Initialize linters/formatters?",
+            "Use default settings for this project?",
             choices=["yes", "no"],
             default="yes",
         ).lower()
         == "yes"
     )
-    init_pre_commit_hooks = (
-        Prompt.ask(
-            "Initialize pre-commit hooks?",
-            choices=["yes", "no"],
-            default="yes",
-        ).lower()
-        == "yes"
-    )
+    if not use_defaults:
+        init_git = (
+            Prompt.ask(
+                "Initialize git?", choices=["yes", "no"], default="yes"
+            ).lower()
+            == "yes"
+        )
+        init_commitizen = (
+            Prompt.ask(
+                "Initialize commitizen?", choices=["yes", "no"], default="yes"
+            ).lower()
+            == "yes"
+        )
+        init_linters = (
+            Prompt.ask(
+                "Initialize linters/formatters?",
+                choices=["yes", "no"],
+                default="yes",
+            ).lower()
+            == "yes"
+        )
+        init_pre_commit_hooks = (
+            Prompt.ask(
+                "Initialize pre-commit hooks?",
+                choices=["yes", "no"],
+                default="yes",
+            ).lower()
+            == "yes"
+        )
+    else:
+        init_git = True
+        init_commitizen = True
+        init_linters = True
+        init_pre_commit_hooks = True
 
     if project_type == "fastapi":
         fastapi.install_fastapi(
