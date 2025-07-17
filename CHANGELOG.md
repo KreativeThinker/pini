@@ -1,3 +1,9 @@
+## v1.5.1 (2025-07-17)
+
+### Fix
+
+- python_package release fix
+
 ## v1.5.0 (2025-07-17)
 
 ### Fix
